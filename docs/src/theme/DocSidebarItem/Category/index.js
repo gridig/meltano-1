@@ -51,39 +51,32 @@ function useCategoryHrefWithSSRFallback(item) {
     return findFirstCategoryLink(item);
   }, [item, isBrowser]);
 }
-// eslint-disable-next-line react/prop-types
 function CollapseButton({ categoryLabel, onClick }) {
   return (
     <button
       aria-label={translate(
         {
           id: 'theme.DocSidebarItem.toggleCollapsedCategoryAriaLabel',
-          message: 'Toggle the collapsible sidebar category \'{label}\'',
+          message: "Toggle the collapsible sidebar category '{label}'",
           description:
             'The ARIA label to toggle the collapsible sidebar category',
         },
         { label: categoryLabel }
       )}
-      type="button"
-      className="clean-btn menu__caret"
+      type='button'
+      className='clean-btn menu__caret'
       onClick={onClick}
     />
   );
 }
 export default function DocSidebarItemCategory({
-  // eslint-disable-next-line react/prop-types
   item,
-  // eslint-disable-next-line react/prop-types
   onItemClick,
-  // eslint-disable-next-line react/prop-types
   activePath,
-  // eslint-disable-next-line react/prop-types
   level,
-  // eslint-disable-next-line react/prop-types
   index,
   ...props
 }) {
-  // eslint-disable-next-line react/prop-types
   const { items, customProps, label, collapsible, className, href } = item;
   const {
     docs: {
@@ -100,7 +93,6 @@ export default function DocSidebarItemCategory({
       if (!collapsible) {
         return false;
       }
-      // eslint-disable-next-line react/prop-types
       return isActive ? false : item.collapsed;
     },
   });
@@ -148,32 +140,29 @@ export default function DocSidebarItemCategory({
           onClick={
             collapsible
               ? (e) => {
-                onItemClick?.(item);
-                if (href) {
-                  updateCollapsed(false);
-                } else {
-                  e.preventDefault();
-                  updateCollapsed();
+                  onItemClick?.(item);
+                  if (href) {
+                    updateCollapsed(false);
+                  } else {
+                    e.preventDefault();
+                    updateCollapsed();
+                  }
                 }
-              }
               : () => {
-                onItemClick?.(item);
-              }
+                  onItemClick?.(item);
+                }
           }
           aria-current={isCurrentPage ? 'page' : undefined}
           aria-expanded={collapsible ? !collapsed : undefined}
           href={collapsible ? hrefWithSSRFallback ?? '#' : hrefWithSSRFallback}
           {...props}
         >
-          {/* eslint-disable-next-line react/prop-types */}
           {customProps?.icon && (
-            <div className="sidebar-category-icon-wrapper">
+            <div className='sidebar-category-icon-wrapper'>
               <div
-                className="sidebar-category-icon"
+                className='sidebar-category-icon'
                 style={{
-                  // eslint-disable-next-line react/prop-types
                   WebkitMaskImage: `url(${customProps.icon})`,
-                  // eslint-disable-next-line react/prop-types
                   maskImage: `url(${customProps.icon})`,
                 }}
               />
@@ -194,7 +183,7 @@ export default function DocSidebarItemCategory({
 
       <Collapsible
         lazy
-        as="ul"
+        as='ul'
         className={clsx('menu__list', styles.menuList)}
         collapsed={collapsed}
       >
